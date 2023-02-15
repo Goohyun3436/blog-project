@@ -5,14 +5,12 @@ import styled from 'styled-components';
 import { AiOutlineClockCircle } from 'react-icons/ai';
 import { SlGraph } from 'react-icons/sl';
 import { BsFillPeopleFill } from 'react-icons/bs';
-import { useDispatch } from 'react-redux';
-import { resetPageNum } from '../../store/modules/mainnavbar';
+import { IoPeople } from 'react-icons/io5';
 
 const PostListNavBar = () => {
   const isLogin = localStorage.getItem('authToken');
   const location = useLocation();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const navBar = [
     {
       name: '트렌딩',
@@ -30,7 +28,7 @@ const PostListNavBar = () => {
     },
     {
       name: '팔로우',
-      icon: <BsFillPeopleFill className='icon' />,
+      icon: <IoPeople className='icon' />,
       path: '/follow',
       query: 'follow',
       view: false,
@@ -45,7 +43,6 @@ const PostListNavBar = () => {
             <Button
               key={navItem.name}
               onClick={() => {
-                dispatch(resetPageNum());
                 navigate(`${navItem.path}`);
               }}
               disabled={location.pathname === navItem.path}
@@ -110,7 +107,7 @@ const Button = styled.button`
   cursor: pointer;
 
   :nth-last-child(2) {
-    display: ${({ isLogin }) => (isLogin ? 'block' : 'none')};
+    display: ${({ isLogin }) => (isLogin ? 'inherit' : 'none')};
   }
 `;
 
